@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Song</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center; /* Center the heading */
+        }
+
+        form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            max-width: 600px; /* Set a maximum width for the form */
+            margin: auto; /* Center the form */
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px; /* Space above and below labels */
+        }
+
+        input[type="text"],
+        textarea,
+        input[type="file"] {
+            width: 100%; /* Make inputs full-width */
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box; /* Include padding in width calculation */
+        }
+
+        button {
+            background-color: #4CAF50; /* Green background */
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer; /* Change cursor to pointer */
+            width: 100%; /* Make the button full-width */
+            margin-top: 10px; /* Space above the button */
+        }
+
+        button:hover {
+            background-color: #45a049; /* Darker green on hover */
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 10px;
+            text-align: center;
+            color: #007BFF; /* Bootstrap primary color */
+            text-decoration: none; /* Remove underline */
+        }
+
+        a:hover {
+            text-decoration: underline; /* Underline on hover */
+        }
+    </style>
+</head>
+<body>
+    <h1>Update Song</h1>
+    <form action="/update/<%= song.id %>" method="POST" enctype="multipart/form-data">
+        <label for="m_name">Song Name:</label>
+        <input type="text" id="m_name" name="m_name" value="<%= song.m_name %>" required>
+
+        <label for="m_artist">Artist:</label>
+        <input type="text" id="m_artist" name="m_artist" value="<%= song.m_artist %>" required>
+
+        <label for="lyrics">Lyrics:</label>
+        <textarea id="lyrics" name="lyrics" required><%= song.lyrics %></textarea>
+
+        <label for="m_picture">Image:</label>
+        <input type="file" id="m_picture" name="m_picture">
+
+        <label for="song">Audio File:</label>
+        <input type="file" id="song" name="song">
+
+        <input type="hidden" name="oldImage" value="<%= song.m_picture %>">
+        <input type="hidden" name="oldFilePath" value="<%= song.song %>">
+
+        <button type="submit">Update Song</button>
+    </form>
+    <a href="/manage">Cancel</a>
+</body>
+</html>

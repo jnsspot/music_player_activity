@@ -1,0 +1,73 @@
+<!-- views/addSong.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add New Song</title>
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 20px;
+    }
+
+    h1 {
+        color: #333;
+        text-align: center; /* Center the heading */
+    }
+
+    form {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        max-width: 400px; /* Limit the form width */
+        margin: auto; /* Center the form */
+    }
+
+    input[type="text"],
+    textarea,
+    input[type="file"] {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    button {
+        background-color: #4CAF50; /* Green */
+        color: white;
+        padding: 10px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        width: 100%; /* Make the button full-width */
+    }
+
+    button:hover {
+        background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Add New Song</h1>
+
+  <form action="/add" method="POST" enctype="multipart/form-data">
+    <input type="text" name="m_name" placeholder="Song Title" required>
+    <input type="text" name="m_artist" placeholder="Artist" required>
+    <textarea id="lyrics" name="lyrics" placeholder="Lyrics"></textarea>
+
+    <label for="m_picture">Song Picture:</label>
+    <input type="file" name="m_picture" accept="image/*" required>
+
+    <label for="song">Audio File:</label>
+    <input type="file" id="song" name="song" accept="audio/*" required>
+
+    <button type="submit">Add Song</button>
+  </form>
+</body>
+</html>

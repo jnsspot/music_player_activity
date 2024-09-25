@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manage Playlist</title>
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 20px;
+    }
+
+    h1 {
+        color: #333;
+        text-align: center; /* Center the heading */
+    }
+
+    ul {
+        list-style-type: none; /* Remove default list styles */
+        padding: 0;
+        max-width: 800px; /* Limit width of the playlist */
+        margin: auto; /* Center the list */
+    }
+
+    li {
+        background-color: white;
+        padding: 15px;
+        margin: 10px 0;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        display: flex; /* Use flexbox for layout */
+        align-items: center; /* Center items vertically */
+    }
+
+    img {
+        border-radius: 5px; /* Round image corners */
+        margin-right: 15px; /* Space between image and text */
+        width: 80px; /* Increase width of the image */
+        height: auto; /* Maintain aspect ratio */
+    }
+
+    audio {
+        margin-top: 10px; /* Add space above the audio player */
+        width: 100%; /* Make audio player full-width */
+        height: 50px; /* Set a specific height for the audio player */
+    }
+
+    a {
+        color: #007BFF; /* Bootstrap primary color */
+        text-decoration: none; /* Remove underline */
+        margin-right: 10px; /* Space between links */
+    }
+
+    a:hover {
+        text-decoration: underline; /* Underline on hover */
+    }
+
+    .add-song-link {
+        display: block;
+        text-align: center;
+        margin-top: 20px;
+        background-color: #4CAF50; /* Green background */
+        color: white;
+        padding: 10px;
+        border-radius: 5px;
+        text-decoration: none; /* Remove underline */
+        width: 150px; /* Set a specific width */
+        margin: auto; /* Center the button */
+    }
+
+    .add-song-link:hover {
+        background-color: #45a049; /* Darker green on hover */
+    }
+  </style>
+</head>
+<body>
+  <h1>Manage Playlist</h1>
+
+  <ul>
+    <% playlist.forEach(function(song) { %>
+      <li>
+        <img src="/uploads/images/<%= song.m_picture %>" alt="<%= song.m_name %>">
+        <div>
+            <p><strong><%= song.m_name %></strong> by <%= song.m_artist %></p>
+        </div>
+    
+        <audio controls>
+            <source src="/uploads/songs/<%= song.song %>" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+    
+        <!-- Update and Delete Actions -->
+        <div>
+            <a href="/delete/<%= song.id %>">Delete</a>
+            <a href="/update/<%= song.id %>">Update</a>
+            
+            <a href="/song/<%= song.id %>">View Lyrics</a> <!-- Link to song lyrics -->
+        </div>
+    </li>    
+    <% }); %>
+  </ul>
+
+  <a href="/add" class="add-song-link">Add New Song</a>
+</body>
+</html>

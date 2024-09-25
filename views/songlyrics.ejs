@@ -1,0 +1,81 @@
+<!-- views/songLyrics.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= song.m_name %> - Lyrics</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+
+        .song-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center the content */
+            margin-bottom: 20px; /* Space below song info */
+        }
+
+        .song-info img {
+            max-width: 150px; /* Set a max width for the image */
+            border-radius: 5px; /* Round image corners */
+            margin-bottom: 10px; /* Space below the image */
+        }
+
+        .lyrics {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin: auto;
+            max-width: 600px;
+        }
+
+        audio {
+            margin-top: 20px; /* Add space above the audio player */
+            width: 100%; /* Make audio player full-width */
+            height: 50px; /* Set a specific height for the audio player */
+        }
+
+        a {
+            display: block;
+            margin-top: 20px;
+            text-align: center;
+            color: #007BFF; /* Bootstrap primary color */
+            text-decoration: none; /* Remove underline */
+        }
+
+        a:hover {
+            text-decoration: underline; /* Underline on hover */
+        }
+    </style>
+</head>
+<body>
+    <h1><%= song.m_name %> - Lyrics</h1>
+
+    <div class="song-info">
+        <img src="/uploads/images/<%= song.m_picture %>" alt="<%= song.m_name %>">
+        <p><strong>Artist:</strong> <%= song.m_artist %></p>
+    </div>
+
+    <div class="lyrics">
+        <p><%= song.lyrics %></p>
+    </div>
+
+    <audio controls>
+        <source src="/uploads/songs/<%= song.song %>" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <a href="/manage">Back to Playlist</a>
+</body>
+</html>
